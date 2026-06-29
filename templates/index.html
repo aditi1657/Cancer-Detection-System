@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Detection System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #474056;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .form-group {
+            flex: 1 1 45%; /* Two columns */
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #474056;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #757083;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cancer Detection System</h1>
+        <form action="/predict" method="post">
+            <!-- Add input fields for the 30 features -->
+            <div class="form-group">
+                <label for="mean_radius">Mean Radius:</label>
+                <input type="number" step="any" id="mean_radius" name="mean_radius" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_texture">Mean Texture:</label>
+                <input type="number" step="any" id="mean_texture" name="mean_texture" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_perimeter">Mean Perimeter:</label>
+                <input type="number" step="any" id="mean_perimeter" name="mean_perimeter" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_area">Mean Area:</label>
+                <input type="number" step="any" id="mean_area" name="mean_area" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_smoothness">Mean Smoothness:</label>
+                <input type="number" step="any" id="mean_smoothness" name="mean_smoothness" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_compactness">Mean Compactness:</label>
+                <input type="number" step="any" id="mean_compactness" name="mean_compactness" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_concavity">Mean Concavity:</label>
+                <input type="number" step="any" id="mean_concavity" name="mean_concavity" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_concave_points">Mean Concave Points:</label>
+                <input type="number" step="any" id="mean_concave_points" name="mean_concave_points" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_symmetry">Mean Symmetry:</label>
+                <input type="number" step="any" id="mean_symmetry" name="mean_symmetry" required>
+            </div>
+            <div class="form-group">
+                <label for="mean_fractal_dimension">Mean Fractal Dimension:</label>
+                <input type="number" step="any" id="mean_fractal_dimension" name="mean_fractal_dimension" required>
+            </div>
+            <div class="form-group">
+                <label for="radius_error">Radius Error:</label>
+                <input type="number" step="any" id="radius_error" name="radius_error" required>
+            </div>
+            <div class="form-group">
+                <label for="texture_error">Texture Error:</label>
+                <input type="number" step="any" id="texture_error" name="texture_error" required>
+            </div>
+            <div class="form-group">
+                <label for="perimeter_error">Perimeter Error:</label>
+                <input type="number" step="any" id="perimeter_error" name="perimeter_error" required>
+            </div>
+            <div class="form-group">
+                <label for="area_error">Area Error:</label>
+                <input type="number" step="any" id="area_error" name="area_error" required>
+            </div>
+            <div class="form-group">
+                <label for="smoothness_error">Smoothness Error:</label>
+                <input type="number" step="any" id="smoothness_error" name="smoothness_error" required>
+            </div>
+            <div class="form-group">
+                <label for="compactness_error">Compactness Error:</label>
+                <input type="number" step="any" id="compactness_error" name="compactness_error" required>
+            </div>
+            <div class="form-group">
+                <label for="concavity_error">Concavity Error:</label>
+                <input type="number" step="any" id="concavity_error" name="concavity_error" required>
+            </div>
+            <div class="form-group">
+                <label for="concave_points_error">Concave Points Error:</label>
+                <input type="number" step="any" id="concave_points_error" name="concave_points_error" required>
+            </div>
+            <div class="form-group">
+                <label for="symmetry_error">Symmetry Error:</label>
+                <input type="number" step="any" id="symmetry_error" name="symmetry_error" required>
+            </div>
+            <div class="form-group">
+                <label for="fractal_dimension_error">Fractal Dimension Error:</label>
+                <input type="number" step="any" id="fractal_dimension_error" name="fractal_dimension_error" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_radius">Worst Radius:</label>
+                <input type="number" step="any" id="worst_radius" name="worst_radius" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_texture">Worst Texture:</label>
+                <input type="number" step="any" id="worst_texture" name="worst_texture" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_perimeter">Worst Perimeter:</label>
+                <input type="number" step="any" id="worst_perimeter" name="worst_perimeter" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_area">Worst Area:</label>
+                <input type="number" step="any" id="worst_area" name="worst_area" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_smoothness">Worst Smoothness:</label>
+                <input type="number" step="any" id="worst_smoothness" name="worst_smoothness" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_compactness">Worst Compactness:</label>
+                <input type="number" step="any" id="worst_compactness" name="worst_compactness" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_concavity">Worst Concavity:</label>
+                <input type="number" step="any" id="worst_concavity" name="worst_concavity" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_concave_points">Worst Concave Points:</label>
+                <input type="number" step="any" id="worst_concave_points" name="worst_concave_points" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_symmetry">Worst Symmetry:</label>
+                <input type="number" step="any" id="worst_symmetry" name="worst_symmetry" required>
+            </div>
+            <div class="form-group">
+                <label for="worst_fractal_dimension">Worst Fractal Dimension:</label>
+                <input type="number" step="any" id="worst_fractal_dimension" name="worst_fractal_dimension" required>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
